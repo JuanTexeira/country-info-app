@@ -12,41 +12,25 @@ export async function getCountries() {
   }
 }
 
-export async function getCountryInfo(id) {
+export async function getCountryInfo(name="nigeria", code="ng") {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/country-info/${id}`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/info`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, code }),
+    });
+
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
-    return await response.json();
+
+    const data = await response.json();
+    console.log(data);
+    return data;
   } catch (error) {
     console.error('Failed to fetch country info:', error);
-    throw error;
-  }
-}
-
-export async function getBorderCountries(id) {
-  try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/border-countries/${id}`);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return await response.json();
-  } catch (error) {
-    console.error('Failed to fetch border countries:', error);
-    throw error;
-  }
-}
-
-export async function getPopulationData(id) {
-  try {
-    const response = await fetch(`${process.env.BASE_URL}/population/${id}`);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return await response.json();
-  } catch (error) {
-    console.error('Failed to fetch population data:', error);
     throw error;
   }
 }

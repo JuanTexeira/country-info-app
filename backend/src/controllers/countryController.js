@@ -10,10 +10,10 @@ const getAvailableCountries = async (req, res) => {
 };
 
 const getCountryInfo = async (req, res) => {
-  const countryCode = req.params.code;
-  
+  const { name, code } = req.body;
+
   try {
-    const countryInfo = await fetchCountryInfo(countryCode);
+    const countryInfo = await fetchCountryInfo(name, code);
     res.json(countryInfo);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching country info' });

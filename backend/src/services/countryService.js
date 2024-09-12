@@ -15,15 +15,19 @@ const fetchAvailableCountries = async () => {
 };
 
 
-const fetchCountryInfo = async (countryCode) => {
-  const [countryInfoResponse, populationResponse, flagResponse] = await Promise.all([
+const fetchCountryInfo = async (countryName="nigeria", countryCode="NG") => {
+  const [bordersResponse, populationResponse, flagResponse] = await Promise.all([
     axios.get(`${nagerAPI}/CountryInfo/${countryCode}`), 
-    axios.post(`${countriesNowAPI}/population`, { country: countryCode }), 
-    axios.post(`${countriesNowAPI}/flag/images`, { country: countryCode })
+    axios.post(`${countriesNowAPI}/population`, { country: countryName }), 
+    axios.post(`${countriesNowAPI}/flag/images`, { iso2: countryCode })
   ]);
 
+  console.log({borders: bordersResponse.data.borders, 
+    population: populationResponse.data.data.populationCounts, 
+    flag: flagResponse.data.data.flag})
+
   return {
-    borders: countryInfoResponse.data.borders, 
+    borders: bordersResponse.data.borders, 
     population: populationResponse.data.data.populationCounts, 
     flag: flagResponse.data.data.flag
   };

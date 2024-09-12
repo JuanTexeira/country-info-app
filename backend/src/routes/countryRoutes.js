@@ -4,6 +4,6 @@ const { getAvailableCountries, getCountryInfo } = require('../controllers/countr
 const router = express.Router();
 
 router.get('/available', getAvailableCountries);
-router.get('/info/:code', getCountryInfo);
+router.post('/info', getCountryInfo);
 
 module.exports = router;

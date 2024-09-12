@@ -1,6 +1,6 @@
 require('dotenv').config({ path: '.env.local' });
 const express = require('express');
-const cors = require('cors'); // Import cors
+const cors = require('cors');
 const countryRoutes = require('./routes/countryRoutes');
 const { fetchAvailableCountries } = require('./services/countryService');
 

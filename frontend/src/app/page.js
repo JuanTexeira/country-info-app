@@ -47,7 +47,7 @@ export default function HomePage() {
                 {countries.length > 0 ? (
                     countries.map((country, index) => (
                         <li key={country.countryCode} className="flex items-center justify-center text-center p-4 max-h-14 border rounded-lg bg-gray-800 border-gray-700 shadow-lg transition-transform transform hover:scale-105">
-                            <Link href={`/countries/${country.countryCode}`} className="text-gray-100 hover:text-blue-400">
+                            <Link href={`/countries/${country.name.toLowerCase()}/${country.countryCode}`} className="text-gray-100 hover:text-blue-400">
                                 {country.name}
                             </Link>
                         </li>
