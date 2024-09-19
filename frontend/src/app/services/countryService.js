@@ -12,7 +12,7 @@ export async function getCountries() {
   }
 }
 
-export async function getCountryInfo(name="nigeria", code="ng") {
+export async function getCountryInfo(name, code) {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/info`, {
       method: 'POST',
